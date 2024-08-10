@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 namespace Scripts.PlayerInventory
 {
@@ -7,20 +8,19 @@ namespace Scripts.PlayerInventory
     {
         [Header("References")]
         [SerializeField] private GameObject _interactionPopup;
-
-        [Header("UI Settings")]
-        [SerializeField] private float _popupOffset = 1.5f;
+        [SerializeField] private GameObject _dialogWindow;
 
         private GameObject _currentInteractable;
 
         private void Awake()
         {
             _currentInteractable = null;
+            _dialogWindow.SetActive(false);
+            _interactionPopup.SetActive(false);
         }
 
         public void SeeItem(GameObject interactable)
         {
-            Debug.Log("See item: " + interactable);
 
             if (interactable == null)
             {
@@ -34,7 +34,7 @@ namespace Scripts.PlayerInventory
                 _currentInteractable = interactable;
                 _interactionPopup.SetActive(true);
                 _interactionPopup.transform.position = interactable.transform.position;
-                _interactionPopup.transform.DOMoveY(interactable.transform.position.y + _popupOffset, 0.5f).SetEase(Ease.OutQuad);
+                _interactionPopup.transform.DOMove(interactable.transform.position + interactable.GetComponent<IInteractable>().popupOffset, 0.5f).SetEase(Ease.OutQuad);
             }
         }
 
@@ -42,6 +42,18 @@ namespace Scripts.PlayerInventory
         {
             if (_currentInteractable != null)
                 _currentInteractable.GetComponent<IInteractable>().Interact();
+        }
+
+        public void OpenDialog(string text)
+        {
+            _dialogWindow.SetActive(true);
+            _dialogWindow.GetComponentInChildren<TextMeshProUGUI>().text = text;
+            _dialogWindow.GetComponentInChildren<TypingEffect>().StartTypingEffect();
+        }
+
+        public void CloseDialog()
+        {
+            _dialogWindow.SetActive(false);
         }
     }
 }
