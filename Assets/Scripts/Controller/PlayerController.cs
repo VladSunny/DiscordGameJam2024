@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Scripts.Movement;
+using Scripts.PlayerInventory;
 
 namespace Scripts.Controller
 {
@@ -10,6 +11,7 @@ namespace Scripts.Controller
     {
         [Header("References")]
         [SerializeField] Transform _orientation;
+        [SerializeField] InteractionManager _interactionManager;
 
         private PlayerControls _playerControls;
         private CharacterMovement _characterMovement;
@@ -47,6 +49,9 @@ namespace Scripts.Controller
         private void PlayerInput()
         {
             _moveInput = _playerControls.Player.Movement.ReadValue<Vector2>();
+
+            if (_playerControls.Player.Interact.triggered)
+                _interactionManager.Interact();
         }
     }
 }

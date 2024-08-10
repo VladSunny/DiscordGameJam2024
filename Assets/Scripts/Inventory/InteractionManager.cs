@@ -11,14 +11,14 @@ namespace Scripts.PlayerInventory
         [Header("UI Settings")]
         [SerializeField] private float _popupOffset = 1.5f;
 
-        private Interactable _currentInteractable;
+        private GameObject _currentInteractable;
 
         private void Awake()
         {
             _currentInteractable = null;
         }
 
-        public void SeeItem(Interactable interactable)
+        public void SeeItem(GameObject interactable)
         {
             Debug.Log("See item: " + interactable);
 
@@ -36,6 +36,12 @@ namespace Scripts.PlayerInventory
                 _interactionPopup.transform.position = interactable.transform.position;
                 _interactionPopup.transform.DOMoveY(interactable.transform.position.y + _popupOffset, 0.5f).SetEase(Ease.OutQuad);
             }
+        }
+
+        public void Interact()
+        {
+            if (_currentInteractable != null)
+                _currentInteractable.GetComponent<IInteractable>().Interact();
         }
     }
 }
