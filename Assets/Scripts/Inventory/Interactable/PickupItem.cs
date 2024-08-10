@@ -7,8 +7,11 @@ namespace Scripts.PlayerInventory
     {
         [SerializeField] private string item;
         [SerializeField] private string dialog;
+        [SerializeField] private Vector3 _popupOffset = Vector3.up * 1.5f;
 
         private bool interacted = false;
+
+        public Vector3 popupOffset => _popupOffset;
 
         public async void Interact()
         {

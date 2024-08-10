@@ -573,7 +573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactionPopup: {fileID: 6247676163774222963}
   _dialogWindow: {fileID: 154643690}
-  _popupOffset: 1.5
 --- !u!4 &139983442
 Transform:
   m_ObjectHideFlags: 0
@@ -715,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: Purple Key
   dialog: 
+  _popupOffset: {x: 0, y: 1.5, z: 0}
 --- !u!1 &271082363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: Green Key
   dialog: Greeeeeeeeeeeeeeen
+  _popupOffset: {x: 0, y: 1.5, z: 0}
 --- !u!4 &609876526 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4878777778194512745, guid: ea9d83195eb4e904ca3f90e6e1cbc211,
@@ -2744,6 +2745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: Yellow Key
   dialog: Yellollllollllolllow
+  _popupOffset: {x: 0, y: 1.5, z: 0}
 --- !u!4 &1420456529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8160010178996038415, guid: 2f4f49c6dfa2784449806daf820e0d3f,
@@ -2988,6 +2990,128 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487739506}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1564661573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564661574}
+  - component: {fileID: 1564661577}
+  - component: {fileID: 1564661576}
+  - component: {fileID: 1564661575}
+  - component: {fileID: 1564661578}
+  m_Layer: 9
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564661574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564661573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.301, y: 2.6999998, z: 17.26}
+  m_LocalScale: {x: 2.0855, y: 4.153248, z: 0.42836}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1564661575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564661573}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1564661576
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564661573}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 479a8ba46b931044fab99152f1fd8b90, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1564661577
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564661573}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1564661578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564661573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8213a27e88434343a2c30cf00f935ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cantOpenMessage: The door is locked.
+  _openedMessage: The door is now open.
+  _key: Yellow Key
+  _popupOffset: {x: 0, y: 0, z: -1.5}
 --- !u!1 &1591568635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1317575287960886582, guid: 0e33401e1ac00f0448fce6d98340e079,
@@ -3018,17 +3142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1205f1de7003d34394ff756aad1b3fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  tmpProText: {fileID: 1591568637}
-  writer: 
-  delayBeforeStart: 0
-  timeBtwChars: 0.1
-  leadingChar: 
-  leadingCharBeforeDelay: 0
-  startOnEnable: 0
-  clearAtStart: 0
-  startOnCollision: 0
-  collisionExitOptions: 0
 --- !u!114 &1591568640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4139,6 +4252,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8128342698090444793, guid: 0e33401e1ac00f0448fce6d98340e079,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8471434383908640796, guid: 0e33401e1ac00f0448fce6d98340e079,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4673,3 +4791,4 @@ SceneRoots:
   - {fileID: 1407942762}
   - {fileID: 601971765}
   - {fileID: 155040188}
+  - {fileID: 1564661574}

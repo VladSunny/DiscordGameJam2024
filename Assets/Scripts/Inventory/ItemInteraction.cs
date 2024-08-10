@@ -5,6 +5,7 @@ namespace Scripts.PlayerInventory
     public interface IInteractable
     {
         public void Interact();
+        public Vector3 popupOffset { get; }
     }
 
     public class ItemInteraction : MonoBehaviour
