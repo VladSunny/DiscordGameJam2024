@@ -2,6 +2,11 @@ using UnityEngine;
 
 namespace Scripts.PlayerInventory
 {
+    public interface IInteractable
+    {
+        public void Interact();
+    }
+
     public class ItemInteraction : MonoBehaviour
     {
         [Header("References")]
@@ -33,7 +38,7 @@ namespace Scripts.PlayerInventory
                     }
                 }
 
-                _interactionManager.SeeItem(closestCollider.GetComponent<Interactable>());
+                _interactionManager.SeeItem(closestCollider.gameObject);
             }
 
             else { _interactionManager.SeeItem(null); }

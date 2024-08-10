@@ -1,21 +1,28 @@
 using UnityEngine;
+using DG.Tweening;
 
 namespace Scripts.PlayerInventory
 {
-    public class PickupItem : MonoBehaviour
+    public class PickupItem : MonoBehaviour, IInteractable
     {
         [SerializeField] private string item;
 
-        private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("Triggered by " + other.gameObject.name);
+        private bool interacted = false;
 
-            if (other.CompareTag("Player"))
-            {
-                Inventory inventory = other.GetComponent<Inventory>();
-                inventory.AddItem(item);
-                Destroy(gameObject);
-            }
+        public async void Interact()
+        {
+            if (interacted)
+                return;
+
+            interacted = true;
+
+            Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+            Debug.Log(inventory);
+            inventory.AddItem(item);
+
+            await gameObject.transform.DOScale(0, 0.5f).SetEase(Ease.InOutCubic).AsyncWaitForCompletion();
+
+            Destroy(gameObject);
         }
     }
 }
