@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 namespace Scripts.PlayerInventory
 {
@@ -7,6 +8,7 @@ namespace Scripts.PlayerInventory
     {
         [Header("References")]
         [SerializeField] private GameObject _interactionPopup;
+        [SerializeField] private GameObject _dialogWindow;
 
         [Header("UI Settings")]
         [SerializeField] private float _popupOffset = 1.5f;
@@ -16,11 +18,12 @@ namespace Scripts.PlayerInventory
         private void Awake()
         {
             _currentInteractable = null;
+            _dialogWindow.SetActive(false);
+            _interactionPopup.SetActive(false);
         }
 
         public void SeeItem(GameObject interactable)
         {
-            Debug.Log("See item: " + interactable);
 
             if (interactable == null)
             {
@@ -42,6 +45,18 @@ namespace Scripts.PlayerInventory
         {
             if (_currentInteractable != null)
                 _currentInteractable.GetComponent<IInteractable>().Interact();
+        }
+
+        public void OpenDialog(string text)
+        {
+            _dialogWindow.SetActive(true);
+            _dialogWindow.GetComponentInChildren<TextMeshProUGUI>().text = text;
+            _dialogWindow.GetComponentInChildren<TypingEffect>().StartTypingEffect();
+        }
+
+        public void CloseDialog()
+        {
+            _dialogWindow.SetActive(false);
         }
     }
 }

@@ -52,6 +52,9 @@ namespace Scripts.Controller
 
             if (_playerControls.Player.Interact.triggered)
                 _interactionManager.Interact();
+
+            if (_playerControls.Player.CloseDialog.triggered)
+                _interactionManager.CloseDialog();
         }
     }
 }
