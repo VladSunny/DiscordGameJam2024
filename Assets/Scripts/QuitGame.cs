@@ -4,9 +4,13 @@ namespace Scripts
 {
     public class QuitGame : MonoBehaviour
     {
-        public void Quit()
+        private void Update()
         {
-            Application.Quit();
+            if (Input.anyKeyDown)
+            {
+                Debug.Log("Quitting Game");
+                Application.Quit();
+            }
         }
     }
 }

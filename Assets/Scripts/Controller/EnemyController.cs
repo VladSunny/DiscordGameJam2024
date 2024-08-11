@@ -79,7 +79,6 @@ namespace Scripts.Movement
             if (_punchCooldownTimer > 0)
                 _punchCooldownTimer -= Time.deltaTime;
 
-            Debug.Log(_agent.velocity.magnitude);
             _animator.SetFloat("Speed", _agent.velocity.magnitude);
         }
 
