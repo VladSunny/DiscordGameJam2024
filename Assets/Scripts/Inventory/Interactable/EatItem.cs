@@ -15,6 +15,16 @@ namespace Scripts.PlayerInventory
 
         private bool _canInteract = true;
 
+        public AudioClip interactAudio; // Assign your AudioClip in the Inspector
+
+        private AudioSource audioSource;
+
+        void Awake()
+        {
+            // Get the AudioSource component attached to the AudioManager
+            audioSource = GetComponent<AudioSource>();
+        }
+
         public void Interact()
         {
             Transform playerTransform = GameObject.FindWithTag("Player").transform;
@@ -30,6 +40,11 @@ namespace Scripts.PlayerInventory
             _canInteract = false;
 
             Sequence sequence = DOTween.Sequence();
+
+            if (audioSource != null && interactAudio != null)
+            {
+                audioSource.PlayOneShot(interactAudio);
+            }
 
             sequence.Append(transform.DOMove(playerTransform.position, 0.5f).SetEase(Ease.InOutCubic));
             sequence.Join(transform.DOScale(0, 0.5f).SetEase(Ease.InOutCubic));
