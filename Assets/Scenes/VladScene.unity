@@ -3244,6 +3244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popupOffset: {x: 0, y: 1.5, z: 0}
+  _dialog: 
+  _get: 
+  _snacks: 100
 --- !u!65 &1545795948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5032,6 +5035,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1236933827080419634, guid: 0e33401e1ac00f0448fce6d98340e079,
+        type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 3292657741373086521}
     - target: {fileID: 1515729214858264014, guid: 0e33401e1ac00f0448fce6d98340e079,
         type: 3}
       propertyPath: _inventory
@@ -5042,11 +5050,6 @@ PrefabInstance:
       propertyPath: _health
       value: 
       objectReference: {fileID: 3292657741373086521}
-    - target: {fileID: 2660546450690955381, guid: 0e33401e1ac00f0448fce6d98340e079,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5631835319230338338, guid: 0e33401e1ac00f0448fce6d98340e079,
         type: 3}
       propertyPath: m_AnchorMax.x
