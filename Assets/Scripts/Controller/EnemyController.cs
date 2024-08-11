@@ -9,9 +9,13 @@ namespace Scripts.Movement
         [SerializeField] private Transform _patrolPointsParent;
         [SerializeField] private Transform _playerTransform;
 
+        [Header("Attack")]
+        [SerializeField] private float _damage = 10f;
+        [SerializeField] private float _punchCooldown = 1f;
+
         [Header("Movement Settings")]
         [SerializeField] private float _waitTime = 0.5f;
-        [SerializeField] private float _chaseRange = 10f;
+        [SerializeField] private float _chaseRange = 1f;
         [SerializeField] private float _lostPlayerWaitTime = 3f;
         [SerializeField] private float _patrolSpeed = 3.5f;
         [SerializeField] private float _hardChaseDuration = 2f;
@@ -35,6 +39,7 @@ namespace Scripts.Movement
         private int _currentPoint = 0;
         private EnemyState _currentState;
         private float _lostPlayerTime;
+        private float _punchCooldownTimer;
         private float _hardChaseDurationTimer;
 
         private void Awake()
@@ -71,6 +76,9 @@ namespace Scripts.Movement
             if (_hardChaseDurationTimer > 0)
                 _hardChaseDurationTimer -= Time.deltaTime;
 
+            if (_punchCooldownTimer > 0)
+                _punchCooldownTimer -= Time.deltaTime;
+
             Debug.Log(_agent.velocity.magnitude);
             _animator.SetFloat("Speed", _agent.velocity.magnitude);
         }
@@ -81,16 +89,16 @@ namespace Scripts.Movement
 
             _visionRaycast.visionAngle = _patrolVisionAngle;
 
-            if (_visionRaycast.OnPlayerSpotted())
+            float distanceToPlayer = Vector3.Distance(_playerTransform.position, transform.position);
+
+            if (_visionRaycast.OnPlayerSpotted() || distanceToPlayer <= _chaseRange)
             {
                 _hardChaseDurationTimer = _hardChaseDuration;
                 SwitchToChasing();
                 return;
             }
 
-            float distanceToPlayer = Vector3.Distance(_playerTransform.position, transform.position);
-
-            if (distanceToPlayer < _agent.stoppingDistance)
+            if (_agent.remainingDistance < _agent.stoppingDistance)
             {
                 _agent.isStopped = true;
                 Invoke(nameof(SetNextPoint), _waitTime);
@@ -101,15 +109,22 @@ namespace Scripts.Movement
         {
             _visionRaycast.visionAngle = _chasingPlayerVisionAngle;
 
-            if (!_visionRaycast.OnPlayerSpotted() && _hardChaseDurationTimer <= 0)
+            float distanceToPlayer = Vector3.Distance(_playerTransform.position, transform.position);
+
+            if (!_visionRaycast.OnPlayerSpotted() && distanceToPlayer > _chaseRange && _hardChaseDurationTimer <= 0)
             {
                 SwitchToLostPlayer();
                 return;
             }
 
-            if (_agent.remainingDistance <= 5f)
+            if (distanceToPlayer <= 1f)
             {
-                _animator.SetBool("Attacking", true);
+                if (_punchCooldownTimer <= 0)
+                {
+                    _punchCooldownTimer = _punchCooldown;
+                    _animator.SetBool("Attacking", true);
+                    _playerTransform.GetComponent<Health>().TakeDamage(_damage);
+                }
             }
             else
             {
