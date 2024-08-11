@@ -39,7 +39,9 @@ namespace Scripts.PlayerInventory
                     }
                 }
 
-                _interactionManager.SeeItem(closestCollider.gameObject);
+                var inter = closestCollider.TryGetComponent(out IInteractable interactable);
+                if (inter)
+                    _interactionManager.SeeItem(closestCollider.gameObject);
             }
 
             else { _interactionManager.SeeItem(null); }

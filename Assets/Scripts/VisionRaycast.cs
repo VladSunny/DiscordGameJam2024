@@ -4,10 +4,13 @@ namespace Scripts
 {
     public class VisionRaycast : MonoBehaviour
     {
-        public Transform player;
-        public float visionRange = 10f;
-        public float visionAngle = 45f;
-        public LayerMask _obstacleLayer;
+        public delegate void OnPlayerSpotted(Transform playerTransform);
+        public OnPlayerSpotted onPlayerSpotted;
+
+        [SerializeField] private Transform player;
+        [SerializeField] private float visionRange = 10f;
+        [SerializeField] private float visionAngle = 45f;
+        [SerializeField] private LayerMask _obstacleLayer;
 
         void Update()
         {
@@ -18,7 +21,7 @@ namespace Scripts
             {
                 if (!Physics.Raycast(transform.position, directionToPlayer.normalized, visionRange, _obstacleLayer))
                 {
-                    Debug.Log("Player spotted!");
+                    onPlayerSpotted?.Invoke(player);
                 }
             }
         }
