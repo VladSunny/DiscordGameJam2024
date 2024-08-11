@@ -766,6 +766,7 @@ MonoBehaviour:
   item: Purple Key
   dialog: 
   _popupOffset: {x: 0, y: 1.5, z: 0}
+  interactAudio: {fileID: 0}
 --- !u!1 &271082363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1580,7 @@ MonoBehaviour:
   item: Green Key
   dialog: Greeeeeeeeeeeeeeen
   _popupOffset: {x: 0, y: 1.5, z: 0}
+  interactAudio: {fileID: 0}
 --- !u!4 &609876526 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4878777778194512745, guid: ea9d83195eb4e904ca3f90e6e1cbc211,
@@ -3091,6 +3093,7 @@ MonoBehaviour:
   item: Yellow Key
   dialog: Yellollllollllolllow
   _popupOffset: {x: 0, y: 1.5, z: 0}
+  interactAudio: {fileID: 0}
 --- !u!4 &1420456529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8160010178996038415, guid: 2f4f49c6dfa2784449806daf820e0d3f,
@@ -3370,6 +3373,7 @@ MonoBehaviour:
   _destroyTag: Electrical
   _dialog: -Electrical
   _popupOffset: {x: 0, y: 0, z: -1}
+  interactAudio: {fileID: 0}
 --- !u!135 &1498049969
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3492,6 +3496,7 @@ MonoBehaviour:
   _dialog: 
   _get: 
   _snacks: 100
+  interactAudio: {fileID: 0}
 --- !u!65 &1545795948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3703,6 +3708,8 @@ MonoBehaviour:
   _usingKey: 0
   _doorDestroying: 0
   _get: knife
+  openAudio: {fileID: 0}
+  closeAudio: {fileID: 0}
 --- !u!1 &1638369481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5394,6 +5401,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8578533271120799944, guid: 0e33401e1ac00f0448fce6d98340e079,
+        type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 3292657741373086521}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

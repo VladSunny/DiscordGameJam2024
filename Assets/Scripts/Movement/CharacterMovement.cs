@@ -1,7 +1,5 @@
 using UnityEngine;
 
-using Scripts.Check;
-
 namespace Scripts.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
@@ -9,9 +7,14 @@ namespace Scripts.Movement
 
     public class CharacterMovement : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private Health _health;
+
         [Header("Movement")]
-        [SerializeField] private float _moveSpeed = 5;
+        [SerializeField] private float _maxSpeed = 15;
         [SerializeField] private float _groundDrag = 4;
+
+        private float _moveSpeed = 5;
 
         // [Header("Jump")]
         // [SerializeField] private float _jumpForce = 12;
@@ -40,6 +43,8 @@ namespace Scripts.Movement
         private void Update()
         {
             // _grounded = _groundCheck.OnGround();
+
+            _moveSpeed = _maxSpeed * _health.LiveLeft() / _health.GetMaxHealth();
 
             SpeedControl();
 

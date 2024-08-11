@@ -80,5 +80,10 @@ namespace Scripts
             _snacks += snacks;
             onSnacksChanged?.Invoke(_snacks);
         }
+
+        public float LiveLeft()
+        {
+            return _health + _snacks;
+        }
     }
 }
