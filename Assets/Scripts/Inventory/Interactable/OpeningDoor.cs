@@ -21,6 +21,17 @@ namespace Scripts.PlayerInventory
 
         private bool _canInteract = true;
 
+        public AudioClip openAudio; 
+        public AudioClip closeAudio; 
+
+        private AudioSource audioSource;
+
+        void Awake()
+        {
+            // Get the AudioSource component attached to the AudioManager
+            audioSource = GetComponent<AudioSource>();
+        }
+
         public async void Interact()
         {
             Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
@@ -28,10 +39,20 @@ namespace Scripts.PlayerInventory
 
             if (!inventory.HasItem(_key))
             {
+                if (audioSource != null && closeAudio != null)
+                {
+                    audioSource.PlayOneShot(closeAudio);
+                }
                 interactionManager.GetComponent<InteractionManager>().OpenDialog(_cantOpenMessage);
             }
             else
             {
+
+                if (audioSource != null && openAudio != null)
+                {
+                    audioSource.PlayOneShot(openAudio);
+                }
+
                 _canInteract = false;
 
                 if (_usingKey)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 namespace Scripts.PlayerInventory
 {
@@ -14,7 +15,17 @@ namespace Scripts.PlayerInventory
 
         private bool _interacted = false;
 
-        public void Interact()
+        public AudioClip interactAudio; // Assign your AudioClip in the Inspector
+
+        private AudioSource audioSource;
+
+        void Awake()
+        {
+            // Get the AudioSource component attached to the AudioManager
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        public async void Interact()
         {
             if (_interacted)
                 return;
@@ -24,6 +35,10 @@ namespace Scripts.PlayerInventory
             if (_dialog != "")
                 GameObject.FindWithTag("InteractionManager").GetComponent<InteractionManager>().OpenDialog(_dialog);
 
+            if (audioSource != null && interactAudio != null)
+            {
+                audioSource.PlayOneShot(interactAudio);
+            }
 
             var objects = GameObject.FindGameObjectsWithTag(_destroyTag);
 
@@ -33,6 +48,9 @@ namespace Scripts.PlayerInventory
             {
                 Destroy(obj);
             }
+
+            await gameObject.transform.DOScale(0, 1f).SetEase(Ease.InOutCubic).AsyncWaitForCompletion();
+            Destroy(gameObject);
 
         }
     }
