@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractionManager
   - Electrical
+  - Enemy
   layers:
   - Default
   - TransparentFX

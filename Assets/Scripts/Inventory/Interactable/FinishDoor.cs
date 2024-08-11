@@ -34,7 +34,7 @@ namespace Scripts.PlayerInventory
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                // Time.timeScale = 0f;
+                Time.timeScale = 0f;
                 _endScene.SetActive(true);
             }
             else

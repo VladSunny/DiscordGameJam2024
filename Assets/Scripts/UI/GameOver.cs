@@ -30,7 +30,7 @@ namespace Scripts
                 Cursor.visible = true;
 
                 _gameOver = true;
-                // Time.timeScale = 0f;
+                Time.timeScale = 0f;
                 _gameOverPanel.SetActive(true);
             }
         }
