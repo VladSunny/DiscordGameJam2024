@@ -7,9 +7,6 @@ namespace Scripts.Movement
 
     public class CharacterMovement : MonoBehaviour
     {
-        [Header("References")]
-        [SerializeField] private Health _health;
-
         [Header("Movement")]
         [SerializeField] private float _maxSpeed = 15;
         [SerializeField] private float _groundDrag = 4;
@@ -27,11 +24,13 @@ namespace Scripts.Movement
         // private GroundCheck _groundCheck;
         private Rigidbody _rb;
         private Animator _animator;
+        private Health _health;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
+            _health = GetComponent<Health>();
             // _groundCheck = GetComponent<GroundCheck>();
 
             _rb.freezeRotation = true;
@@ -44,7 +43,7 @@ namespace Scripts.Movement
         {
             // _grounded = _groundCheck.OnGround();
 
-            _moveSpeed = _maxSpeed * _health.LiveLeft() / _health.GetMaxHealth();
+            _moveSpeed = _maxSpeed * _health.GetHealth() / _health.GetMaxHealth();
 
             SpeedControl();
 
