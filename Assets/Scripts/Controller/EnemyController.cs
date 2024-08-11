@@ -29,6 +29,7 @@ namespace Scripts.Movement
 
 
         private NavMeshAgent _agent;
+        private Animator _animator;
         private VisionRaycast _visionRaycast;
         private Transform[] _points;
         private int _currentPoint = 0;
@@ -40,6 +41,7 @@ namespace Scripts.Movement
         {
             _agent = GetComponent<NavMeshAgent>();
             _visionRaycast = GetComponent<VisionRaycast>();
+            _animator = GetComponentInChildren<Animator>();
 
             _points = new Transform[_patrolPointsParent.childCount];
             for (int i = 0; i < _patrolPointsParent.childCount; i++)
@@ -68,10 +70,15 @@ namespace Scripts.Movement
 
             if (_hardChaseDurationTimer > 0)
                 _hardChaseDurationTimer -= Time.deltaTime;
+
+            Debug.Log(_agent.velocity.magnitude);
+            _animator.SetFloat("Speed", _agent.velocity.magnitude);
         }
 
         private void HandlePatrolling()
         {
+            _animator.SetBool("Attacking", false);
+
             _visionRaycast.visionAngle = _patrolVisionAngle;
 
             if (_visionRaycast.OnPlayerSpotted())
@@ -81,7 +88,9 @@ namespace Scripts.Movement
                 return;
             }
 
-            if (_agent.remainingDistance < _agent.stoppingDistance)
+            float distanceToPlayer = Vector3.Distance(_playerTransform.position, transform.position);
+
+            if (distanceToPlayer < _agent.stoppingDistance)
             {
                 _agent.isStopped = true;
                 Invoke(nameof(SetNextPoint), _waitTime);
@@ -98,12 +107,23 @@ namespace Scripts.Movement
                 return;
             }
 
+            if (_agent.remainingDistance <= 5f)
+            {
+                _animator.SetBool("Attacking", true);
+            }
+            else
+            {
+                _animator.SetBool("Attacking", false);
+            }
+
             _agent.SetDestination(_playerTransform.position);
             _agent.speed = _chaseSpeed;
         }
 
         private void HandleLostPlayer()
         {
+            _animator.SetBool("Attacking", false);
+
             if (Time.time - _lostPlayerTime > _lostPlayerWaitTime)
             {
                 SwitchToPatrolling();

@@ -21,6 +21,7 @@ public class TypingEffect : MonoBehaviour
 
     public void StartTypingEffect()
     {
+        StopAllCoroutines();
         if (textMeshPro != null)
         {
             StartCoroutine(TypeText());
