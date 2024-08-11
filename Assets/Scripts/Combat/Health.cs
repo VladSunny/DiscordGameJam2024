@@ -69,6 +69,12 @@ namespace Scripts
             onHealthChanged?.Invoke(_health);
         }
 
+        public void TakeDamageToHealth(float damage)
+        {
+            _health = Mathf.Clamp(_health - damage, 0, _maxHealth);
+            onHealthChanged?.Invoke(_health);
+        }
+
         public void Heal(float heal)
         {
             _health = Mathf.Clamp(_health + heal, 0, _maxHealth);

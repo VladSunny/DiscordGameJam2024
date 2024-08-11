@@ -122,7 +122,7 @@ namespace Scripts.Movement
                 {
                     _punchCooldownTimer = _punchCooldown;
                     _animator.SetBool("Attacking", true);
-                    _playerTransform.GetComponent<Health>().TakeDamage(_damage);
+                    _playerTransform.GetComponent<Health>().TakeDamageToHealth(_damage);
                 }
             }
             else

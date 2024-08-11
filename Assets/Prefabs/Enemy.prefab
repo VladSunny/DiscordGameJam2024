@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrolPointsParent: {fileID: 0}
   _playerTransform: {fileID: 0}
-  _damage: 10
+  _damage: 30
   _punchCooldown: 1
   _waitTime: 1
   _chaseRange: 10

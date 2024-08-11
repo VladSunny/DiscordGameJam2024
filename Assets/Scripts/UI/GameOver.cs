@@ -24,7 +24,7 @@ namespace Scripts
 
         private void OnHealthChanged(float health)
         {
-            if (_health.LiveLeft() <= 0 && !_gameOver)
+            if (_health.GetHealth() <= 0 && !_gameOver)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
