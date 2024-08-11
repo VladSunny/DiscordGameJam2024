@@ -77,6 +77,8 @@ namespace Scripts.Movement
 
         private void HandlePatrolling()
         {
+            _animator.SetBool("Attacking", false);
+
             _visionRaycast.visionAngle = _patrolVisionAngle;
 
             if (_visionRaycast.OnPlayerSpotted())
@@ -86,7 +88,9 @@ namespace Scripts.Movement
                 return;
             }
 
-            if (_agent.remainingDistance < _agent.stoppingDistance)
+            float distanceToPlayer = Vector3.Distance(_playerTransform.position, transform.position);
+
+            if (distanceToPlayer < _agent.stoppingDistance)
             {
                 _agent.isStopped = true;
                 Invoke(nameof(SetNextPoint), _waitTime);
@@ -103,12 +107,23 @@ namespace Scripts.Movement
                 return;
             }
 
+            if (_agent.remainingDistance <= 5f)
+            {
+                _animator.SetBool("Attacking", true);
+            }
+            else
+            {
+                _animator.SetBool("Attacking", false);
+            }
+
             _agent.SetDestination(_playerTransform.position);
             _agent.speed = _chaseSpeed;
         }
 
         private void HandleLostPlayer()
         {
+            _animator.SetBool("Attacking", false);
+
             if (Time.time - _lostPlayerTime > _lostPlayerWaitTime)
             {
                 SwitchToPatrolling();
