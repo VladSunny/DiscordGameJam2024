@@ -8,6 +8,7 @@ namespace Scripts.PlayerInventory
         [SerializeField] private Vector3 _popupOffset = Vector3.up * 1.5f;
         [SerializeField] private string _dialog = "";
         [SerializeField] private string _get = "";
+        [SerializeField] private float _snacks = 100f;
 
         public Vector3 popupOffset => _popupOffset;
         public bool CanInteract => _canInteract;
@@ -23,6 +24,8 @@ namespace Scripts.PlayerInventory
 
             if (_get != "")
                 GameObject.FindWithTag("Player").GetComponent<Inventory>().AddItem(_get);
+
+            playerTransform.GetComponent<Health>().AddSnacks(_snacks);
 
             _canInteract = false;
 

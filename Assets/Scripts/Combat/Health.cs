@@ -9,7 +9,11 @@ namespace Scripts
         public delegate void OnHealthChanged(float health);
         public OnHealthChanged onHealthChanged;
 
+        public delegate void OnSnacksChanged(float snacks);
+        public OnSnacksChanged onSnacksChanged;
+
         [SerializeField, ReadOnly] private float _health = 0f;
+        [SerializeField, ReadOnly] private float _snacks = 0f;
 
         [Header("Health Settings")]
         [SerializeField] private float _maxHealth = 100f;
@@ -29,6 +33,7 @@ namespace Scripts
         private void Start()
         {
             onHealthChanged?.Invoke(_health);
+            onSnacksChanged?.Invoke(_snacks);
         }
 
         private void Update()
@@ -44,6 +49,22 @@ namespace Scripts
 
         public void TakeDamage(float damage)
         {
+            if (_snacks >= damage)
+            {
+                _snacks -= damage;
+                onSnacksChanged?.Invoke(_snacks);
+                return;
+            }
+            else if (_snacks > 0)
+            {
+                damage -= _snacks;
+                _snacks = 0;
+                onSnacksChanged?.Invoke(_snacks);
+                _health = Mathf.Clamp(_health - damage, 0, _maxHealth);
+                onHealthChanged?.Invoke(_health);
+                return;
+            }
+
             _health = Mathf.Clamp(_health - damage, 0, _maxHealth);
             onHealthChanged?.Invoke(_health);
         }
@@ -52,6 +73,12 @@ namespace Scripts
         {
             _health = Mathf.Clamp(_health + heal, 0, _maxHealth);
             onHealthChanged?.Invoke(_health);
+        }
+
+        public void AddSnacks(float snacks)
+        {
+            _snacks += snacks;
+            onSnacksChanged?.Invoke(_snacks);
         }
     }
 }

@@ -23,10 +23,12 @@ namespace Scripts.Movement
 
         // private GroundCheck _groundCheck;
         private Rigidbody _rb;
+        private Animator _animator;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            _animator = GetComponentInChildren<Animator>();
             // _groundCheck = GetComponent<GroundCheck>();
 
             _rb.freezeRotation = true;
@@ -40,6 +42,9 @@ namespace Scripts.Movement
             // _grounded = _groundCheck.OnGround();
 
             SpeedControl();
+
+            Debug.Log(_rb.velocity.magnitude);
+            _animator.SetFloat("Speed", _rb.velocity.magnitude);
 
             // if (_grounded)
             //     _rb.drag = _groundDrag;
