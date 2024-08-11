@@ -9,6 +9,7 @@ namespace Scripts.Movement
     {
         [Header("Movement")]
         [SerializeField] private float _maxSpeed = 15;
+        [SerializeField] private float _minSpeed = 15;
         [SerializeField] private float _groundDrag = 4;
 
         private float _moveSpeed = 5;
@@ -43,7 +44,7 @@ namespace Scripts.Movement
         {
             // _grounded = _groundCheck.OnGround();
 
-            _moveSpeed = _maxSpeed * _health.GetHealth() / _health.GetMaxHealth();
+            _moveSpeed = Mathf.Clamp(_maxSpeed * _health.GetHealth() / _health.GetMaxHealth() * 1.5f, _minSpeed, _maxSpeed);
 
             SpeedControl();
 
