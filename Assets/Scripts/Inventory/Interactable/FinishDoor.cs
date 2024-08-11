@@ -37,6 +37,10 @@ namespace Scripts.PlayerInventory
                 Time.timeScale = 0f;
                 _endScene.SetActive(true);
             }
+            else
+            {
+                GameObject.FindWithTag("InteractionManager").GetComponent<InteractionManager>().OpenDialog(_cantOpenText);
+            }
         }
     }
 }
