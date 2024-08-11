@@ -15149,11 +15149,6 @@ PrefabInstance:
       objectReference: {fileID: 720447037}
     - target: {fileID: 7397617305893924533, guid: 60cb6a9757eb60e4ca5e6d9198a528d4,
         type: 3}
-      propertyPath: _damage
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 7397617305893924533, guid: 60cb6a9757eb60e4ca5e6d9198a528d4,
-        type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 720447037}
