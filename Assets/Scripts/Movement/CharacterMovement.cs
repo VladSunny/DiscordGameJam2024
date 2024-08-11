@@ -43,7 +43,6 @@ namespace Scripts.Movement
 
             SpeedControl();
 
-            Debug.Log(_rb.velocity.magnitude);
             _animator.SetFloat("Speed", _rb.velocity.magnitude);
 
             // if (_grounded)

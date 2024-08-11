@@ -29,6 +29,7 @@ namespace Scripts.Movement
 
 
         private NavMeshAgent _agent;
+        private Animator _animator;
         private VisionRaycast _visionRaycast;
         private Transform[] _points;
         private int _currentPoint = 0;
@@ -40,6 +41,7 @@ namespace Scripts.Movement
         {
             _agent = GetComponent<NavMeshAgent>();
             _visionRaycast = GetComponent<VisionRaycast>();
+            _animator = GetComponentInChildren<Animator>();
 
             _points = new Transform[_patrolPointsParent.childCount];
             for (int i = 0; i < _patrolPointsParent.childCount; i++)
@@ -68,6 +70,9 @@ namespace Scripts.Movement
 
             if (_hardChaseDurationTimer > 0)
                 _hardChaseDurationTimer -= Time.deltaTime;
+
+            Debug.Log(_agent.velocity.magnitude);
+            _animator.SetFloat("Speed", _agent.velocity.magnitude);
         }
 
         private void HandlePatrolling()
