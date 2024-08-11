@@ -26,26 +26,26 @@ namespace Scripts.Movement
             }
         }
 
-        private void Start()
+        public void NextPoint()
         {
             _currentPoint = Random.Range(0, _points.Length);
             _agent.SetDestination(_points[_currentPoint].position);
         }
 
-        private void Update()
-        {
-            if (_agent.remainingDistance < _agent.stoppingDistance)
-            {
-                _currentPoint = Random.Range(0, _points.Length);
-                _agent.SetDestination(_points[_currentPoint].position);
-                _agent.isStopped = true;
-                Invoke(nameof(ResetPath), _waitTime);
-            }
-        }
+        // private void Update()
+        // {
+        //     if (_agent.remainingDistance < _agent.stoppingDistance)
+        //     {
+        //         _currentPoint = Random.Range(0, _points.Length);
+        //         _agent.SetDestination(_points[_currentPoint].position);
+        //         _agent.isStopped = true;
+        //         Invoke(nameof(ResetPath), _waitTime);
+        //     }
+        // }
 
-        private void ResetPath()
-        {
-            _agent.isStopped = false;
-        }
+        // private void ResetPath()
+        // {
+        //     _agent.isStopped = false;
+        // }
     }
 }

@@ -21,13 +21,15 @@ namespace Scripts.PlayerInventory
 
         public void SeeItem(GameObject interactable)
         {
-
             if (interactable == null)
             {
                 _interactionPopup.SetActive(false);
                 _currentInteractable = null;
                 return;
             }
+
+            if (!interactable.GetComponent<IInteractable>().CanInteract)
+                return;
 
             if (_currentInteractable != interactable)
             {
@@ -40,7 +42,7 @@ namespace Scripts.PlayerInventory
 
         public void Interact()
         {
-            if (_currentInteractable != null)
+            if (_currentInteractable != null && _currentInteractable.GetComponent<IInteractable>().CanInteract)
                 _currentInteractable.GetComponent<IInteractable>().Interact();
         }
 

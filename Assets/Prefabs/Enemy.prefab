@@ -94,7 +94,8 @@ GameObject:
   - component: {fileID: 625081876812633329}
   - component: {fileID: 2668530065356317862}
   - component: {fileID: 6280197962959809740}
-  - component: {fileID: 5477934644950497822}
+  - component: {fileID: 3431958871457538185}
+  - component: {fileID: 7397617305893924533}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -163,7 +164,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5477934644950497822
+--- !u!114 &3431958871457538185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,11 +173,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1842340811566248210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e704a41326bcb4db6865fb5559c2eb, type: 3}
+  m_Script: {fileID: 11500000, guid: a5800c010bfd1594a87b0f1ec9b59421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  visionRange: 10
+  visionAngle: 90
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &7397617305893924533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842340811566248210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218bbc318abf5654bbe79ea478297db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _patrolPointsParent: {fileID: 0}
-  _waitTime: 2
+  _playerTransform: {fileID: 0}
+  _waitTime: 1
+  _chaseRange: 10
+  _lostPlayerWaitTime: 4
+  _patrolSpeed: 3.5
+  _chaseSpeed: 4
+  _lostPlayerRadius: 1
 --- !u!1 &2062632921517818071
 GameObject:
   m_ObjectHideFlags: 0

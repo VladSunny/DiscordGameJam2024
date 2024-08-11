@@ -6,6 +6,7 @@ namespace Scripts.PlayerInventory
     {
         public void Interact();
         public Vector3 popupOffset { get; }
+        public bool CanInteract { get; }
     }
 
     public class ItemInteraction : MonoBehaviour
@@ -39,7 +40,9 @@ namespace Scripts.PlayerInventory
                     }
                 }
 
-                _interactionManager.SeeItem(closestCollider.gameObject);
+                var inter = closestCollider.TryGetComponent(out IInteractable interactable);
+                if (inter)
+                    _interactionManager.SeeItem(closestCollider.gameObject);
             }
 
             else { _interactionManager.SeeItem(null); }

@@ -4,21 +4,26 @@ namespace Scripts
 {
     public class VisionRaycast : MonoBehaviour
     {
-        public Transform player;
+
+        [SerializeField] private Transform player;
         public float visionRange = 10f;
         public float visionAngle = 45f;
-        public LayerMask _obstacleLayer;
+        [SerializeField] private LayerMask _obstacleLayer;
+
+        private bool _onPlayerSpotted = false;
 
         void Update()
         {
             Vector3 directionToPlayer = player.position - transform.position;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
+            _onPlayerSpotted = false;
+
             if (directionToPlayer.magnitude < visionRange && angle < visionAngle)
             {
                 if (!Physics.Raycast(transform.position, directionToPlayer.normalized, visionRange, _obstacleLayer))
                 {
-                    Debug.Log("Player spotted!");
+                    _onPlayerSpotted = true;
                 }
             }
         }
@@ -49,5 +54,7 @@ namespace Scripts
                 Gizmos.DrawLine(center + forward * range, point1);
             }
         }
+
+        public bool OnPlayerSpotted() => _onPlayerSpotted;
     }
 }
