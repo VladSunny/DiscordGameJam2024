@@ -10,6 +10,8 @@ namespace Scripts.PlayerInventory
 
         public Vector3 popupOffset => _popupOffset;
 
+        public bool CanInteract => !_interacted;
+
         private bool _interacted = false;
 
         public void Interact()
@@ -32,7 +34,6 @@ namespace Scripts.PlayerInventory
                 Destroy(obj);
             }
 
-            enabled = false;
         }
     }
 }

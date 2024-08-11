@@ -3335,6 +3335,7 @@ MonoBehaviour:
   _popupOffset: {x: 0, y: 0, z: -1.5}
   _usingKey: 0
   _doorDestroying: 0
+  _get: knife
 --- !u!1 &1638369481
 GameObject:
   m_ObjectHideFlags: 0

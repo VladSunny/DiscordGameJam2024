@@ -9,16 +9,18 @@ namespace Scripts.PlayerInventory
         [SerializeField] private string dialog;
         [SerializeField] private Vector3 _popupOffset = Vector3.up * 1.5f;
 
-        private bool interacted = false;
-
         public Vector3 popupOffset => _popupOffset;
+
+        public bool CanInteract => !_interacted;
+
+        private bool _interacted = false;
 
         public async void Interact()
         {
-            if (interacted)
+            if (_interacted)
                 return;
 
-            interacted = true;
+            _interacted = true;
 
             Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
             Debug.Log(inventory);

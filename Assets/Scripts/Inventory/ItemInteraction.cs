@@ -6,6 +6,7 @@ namespace Scripts.PlayerInventory
     {
         public void Interact();
         public Vector3 popupOffset { get; }
+        public bool CanInteract { get; }
     }
 
     public class ItemInteraction : MonoBehaviour

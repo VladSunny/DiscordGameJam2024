@@ -13,8 +13,13 @@ namespace Scripts.PlayerInventory
         [SerializeField] private Vector3 _popupOffset = Vector3.forward * 1.5f;
         [SerializeField] private bool _usingKey = true;
         [SerializeField] private bool _doorDestroying = true;
+        [SerializeField] private string _get = "";
 
         public Vector3 popupOffset => _popupOffset;
+
+        public bool CanInteract => _canInteract;
+
+        private bool _canInteract = true;
 
         public async void Interact()
         {
@@ -27,8 +32,16 @@ namespace Scripts.PlayerInventory
             }
             else
             {
+                _canInteract = false;
+
                 if (_usingKey)
                     inventory.RemoveItem(_key);
+
+                if (_get != "")
+                {
+                    inventory.AddItem(_get);
+                }
+
                 interactionManager.GetComponent<InteractionManager>().OpenDialog(_openedMessage);
 
                 if (_doorDestroying)
@@ -36,8 +49,6 @@ namespace Scripts.PlayerInventory
                     await transform.DOScale(0, 1f).SetEase(Ease.InOutCubic).AsyncWaitForCompletion();
                     Destroy(gameObject);
                 }
-                else
-                    this.enabled = false;
             }
         }
     }
